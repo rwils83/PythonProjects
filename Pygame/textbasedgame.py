@@ -11,18 +11,24 @@ here for now. Because I hate writing the actual story line for
 a game. Note to self. Find someone to write the story lines for
 all your games. End note""")
 
+
+
 player_name = input("Enter Players Name: ")
 character_name = input("What would you like to name your character: ")
 
 inventory = Inventory()
 recieve_gift = input("Would you like to recieve a gift? Enter y for yes or n for no ")
 if (recieve_gift.capitalize() == "Y"):
-    inventory.add_item(Item('Sword', 5, 1, 15, 2))
-    inventory.add_item(Item('Armor', 0, 10, 25, 5))
+    inventory.add_weapon(Weapon('Sword', 5, 1, 15))
+    inventory.add_armor(Armor('Armor', 0, 10, 25))
 else:
-    inventory.add_item(Item("", 0, 0, 0, 0))
+    inventory.add_weapon(Item("", 0, 0, 0, 0))
+    inventory.add_armor((Armor('', 0, 0, 0)))
 
-inventory.print_items()
+print("Your Weapons: ")
+inventory.print_weapons()
+print("Your Armor")
+inventory.print_armor()
 
 print (""" You start off in some city that again has no name, I just need
 a place holder for now. So %s, you are in the city go_fuck_yourself in
@@ -41,21 +47,27 @@ menu_selection = int(menu_selection)
 
 def menu_switch_case(player_selection):
     switch = {
-        1: "Yeah, the armory is closed till I write the story",
-    
+        1: "The armory doesn't exist until I write the story",
+
         2: "Doctors are for pussies...at least till I write the story",
-   
+
         3: "I can let you continue, but there is nothing else yet",
 
         4: "Good bye!"
         }
-    return switch.get(player_selection, "please pick a number between 1 and 4") 
+    func = switch.get(player_selection, "please pick a number between 1 and 4")
+    print(func)
 
 while menu_selection != 3:
-   
+
     if menu_selection != 4:
         print(menu_switch_case(menu_selection))
         menu_selection = input("Please pick between 1 and 4: ")
         menu_selection = int(menu_selection)
     else:
         menu_selection = 3
+
+
+test = Player(character_name, 100, 50)
+print("Your player Stats are: ")
+test.print_player_stats()
